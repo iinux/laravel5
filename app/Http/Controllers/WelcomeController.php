@@ -34,7 +34,7 @@ class WelcomeController extends Controller {
 	public function index()
 	{
 		return view('comments/index')->with([
-			'comments' => Comment::all(),
+			'comments' => Comment::paginate(2),
 		]);
 	}
 
