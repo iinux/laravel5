@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use App\Models\Comment;
+
 class WelcomeController extends Controller {
 
 	/*
@@ -30,7 +33,19 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('welcome');
+		return view('comments/index')->with([
+			'comments' => Comment::all(),
+		]);
 	}
 
+	public function postIndex(Request $request)
+	{
+		$data = [
+				'ip' => $request->ip(),
+				'content' => $request->input('content'),
+		];
+		//dd($data);
+		Comment::create($data);
+		return redirect('/');
+	}
 }
