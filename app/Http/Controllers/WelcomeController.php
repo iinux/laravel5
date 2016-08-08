@@ -40,12 +40,16 @@ class WelcomeController extends Controller {
 
 	public function postIndex(Request $request)
 	{
-		$data = [
-				'ip' => $request->ip(),
-				'content' => $request->input('content'),
-		];
-		//dd($data);
-		Comment::create($data);
+		$content = $request->input('content');
+		if ($content) {
+			$data = [
+					'ip' => $request->ip(),
+					'content' => $content,
+			];
+			//dd($data);
+			Comment::create($data);
+		}
+
 		return redirect('/');
 	}
 }
