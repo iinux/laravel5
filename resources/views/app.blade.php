@@ -17,6 +17,30 @@
 		<script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
 		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 	<![endif]-->
+	<script language="javascript">
+		function zlanOp(url, tip, parameters, callback) {
+			if (callback == undefined) {
+				callback = function (data) {
+					$.messager.alert('提示', data);
+				}
+			}
+			if (parameters == undefined) {
+				parameters = {};
+			}
+			parameters._token = "{{ csrf_token() }}";
+
+			if (tip) {
+				$.messager.confirm("提示", tip, function (data) {
+					$.post(url, parameters, callback);
+					location.reload();
+				});
+			} else {
+				$.post(url, parameters, callback);
+				location.reload();
+			}
+
+		}
+	</script>
 </head>
 <body>
 	<nav class="navbar navbar-default">
@@ -58,5 +82,6 @@
 	<!-- Scripts -->
 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
+	<script src="http://bootstrap.ourjs.com/js/jquery.bootstrap.js"></script>
 </body>
 </html>

@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+
+use App\Models\Comment;
+
 class HomeController extends Controller {
 
 	/*
@@ -30,7 +33,20 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home');
+		return view('home')->with([
+			'comments' => Comment::paginate(20),
+		]);
+	}
+	
+	public function postDelete($id)
+	{
+		$comment = Comment::where('id', $id)->first();
+		if (empty($comment)) {
+			return 'Not Found';
+		} else {
+			$comment->delete();
+			return 'OK';
+		}
 	}
 
 }

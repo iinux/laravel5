@@ -8,7 +8,19 @@
 				<div class="panel-heading">Home</div>
 
 				<div class="panel-body">
-					You are logged in!
+					<table class="table table-bordered">
+						@foreach($comments as $comment)
+						<tr>
+							<td>
+								<a href="">{{ $comment->content }}</a>
+							</td>
+							<td>
+								<button type="button" class="btn btn-default btn-danger"
+										onclick="zlanOp('comment/delete/{{ $comment->id }}', '确定删除吗')">删除</button>
+							</td>
+						</tr>
+						@endforeach
+					</table>
 				</div>
 			</div>
 		</div>
