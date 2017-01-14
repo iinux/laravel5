@@ -21,6 +21,7 @@
 						</tr>
 						@endforeach
 					</table>
+					{!! $comments->render() !!}
 				</div>
 			</div>
 		</div>
