@@ -15,7 +15,10 @@ Route::get('/', 'WelcomeController@index');
 Route::post('/', 'WelcomeController@postIndex');
 
 Route::get('home', 'HomeController@index');
-Route::post('comment/delete/{id}', 'HomeController@postDelete');
+Route::post('comments/delete/{id}', 'HomeController@deleteComment');
+Route::get('comments/{id}', 'HomeController@showComment');
+Route::post('comments', 'HomeController@addComment');
+Route::post('comments/{id}', 'HomeController@editComment');
 
 Route::controllers([
 	'auth' => 'Auth\AuthController',

@@ -2,6 +2,7 @@
 
 
 use App\Models\Comment;
+use Illuminate\Http\Request;
 
 class HomeController extends Controller {
 
@@ -33,20 +34,44 @@ class HomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('home')->with([
+		return view('home.index')->with([
 			'comments' => Comment::paginate(20),
 		]);
 	}
 	
-	public function postDelete($id)
+	public function showComment($id)
 	{
-		$comment = Comment::where('id', $id)->first();
-		if (empty($comment)) {
-			return 'Not Found';
-		} else {
-			$comment->delete();
-			return 'OK';
-		}
+		return view('comments.show')->with([
+			'comment' => Comment::findOrFail($id),
+		]);
+		
+	}
+
+	public function editComment($id, Request $request)
+	{
+		$comment = Comment::findOrFail($id);
+		$comment->content = $request->input('content');
+		$comment->save();
+
+		return redirect('/home');
+	}
+
+	public function addComment(Request $request)
+	{
+		$content = $request->input('content');
+		Comment::create([
+			'content' => $content,
+		]);
+
+		return redirect('/home');
+	}
+
+	public function deleteComment($id)
+	{
+		$comment = Comment::findOrFail($id);
+		$comment->delete();
+
+		return 'OK';
 	}
 
 }
