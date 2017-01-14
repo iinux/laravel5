@@ -35,7 +35,7 @@ class HomeController extends Controller {
 	public function index()
 	{
 		return view('home.index')->with([
-			'comments' => Comment::paginate(20),
+			'comments' => Comment::orderBy('created_at', 'desc')->paginate(20),
 		]);
 	}
 	
