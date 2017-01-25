@@ -20,6 +20,12 @@ Route::get('comments/{id}', 'HomeController@showComment');
 Route::post('comments', 'HomeController@addComment');
 Route::post('comments/{id}', 'HomeController@editComment');
 
+Route::get('wechat/verify', ['uses'=>'Auth\AuthController@wechatVerify','as'=>'wechat.verify']);
+Route::get('wechat/auth', ['uses'=>'Auth\AuthController@wechatAuth','as'=>'wechat.auth']);
+
+Route::any('wechat','Auth\AuthController@serve');
+Route::get('me', ['uses'=>'Wechat\UserController@profile']);
+
 Route::controllers([
 	'auth' => 'Auth\AuthController',
 	'password' => 'Auth\PasswordController',
