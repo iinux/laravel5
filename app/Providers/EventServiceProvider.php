@@ -1,7 +1,5 @@
 <?php namespace App\Providers;
 
-use Overtrue\LaravelWechat\Events\WeChatUserAuthorized as WeChatUserAuthorizedEvent;
-use App\Listeners\WeChatUserAuthorized as WeChatUserAuthorizedListener;
 use Illuminate\Contracts\Events\Dispatcher as DispatcherContract;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -13,8 +11,8 @@ class EventServiceProvider extends ServiceProvider {
 	 * @var array
 	 */
 	protected $listen = [
-		WeChatUserAuthorizedEvent::class => [
-			WeChatUserAuthorizedListener::class,
+		'Overtrue\LaravelWechat\Events\WeChatUserAuthorized' => [
+			'App\Listeners\WeChatUserAuthorized',
 		],
 	];
 
