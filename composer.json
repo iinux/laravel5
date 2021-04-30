@@ -5,7 +5,7 @@
 	"license": "MIT",
 	"type": "project",
 	"require": {
-		"laravel/framework": "6.20.14",
+		"laravel/framework": "6.20.26",
 		"overtrue/laravel-wechat": "*"
 	},
 	"require-dev": {
